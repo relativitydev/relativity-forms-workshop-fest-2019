@@ -76,7 +76,7 @@ While there is a slightly larger surface area than this, the two functions with 
 createEventHandlersForFileName(fileName, settings = {}) 
 ```
 
-`expectEventHandlersSurfaceArea` asserts that the eventHandlers object you've given it contains exactly the functions you've specified; no more, and no less.  Additionally, the assertion checks that the functions you've specified are valid eventNames.
+`expectEventHandlersSurfaceArea` asserts that the eventHandlers object you've given it contains all of the functions you're expecting, and that the functions you've specified are valid eventNames.
 
 ```
 /**
