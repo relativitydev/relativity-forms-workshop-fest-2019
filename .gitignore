@@ -332,3 +332,6 @@ ASALocalRun/
 # Crazy MacOs things
 .DS_Store
 .DS_Store/
+
+# package-lock was freezing dependencies and subdependencies which had been vulnerabilities.
+package-lock.json
