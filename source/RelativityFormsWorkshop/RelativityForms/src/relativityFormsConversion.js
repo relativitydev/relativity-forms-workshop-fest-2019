@@ -1,4 +1,3 @@
-// This is an excellent skeleton, which will fail.
 (function iifeGeneratingEventHandlers(eventNames, convenienceApi, privilegedEnvelope) {
 	/* global alert, eventNames, convenienceApi, privilegedEnvelope */
 
@@ -9,11 +8,7 @@
 	var vars = privilegedEnvelope || {};
 
 	// the object we will be returning
-	var eventHandlers = {
-		accidentallyAdded: function () {
-			return () => "no arrows"; // present just to annoy the tests and linting.
-		}
-	};
+	var eventHandlers = {};
 
 	// Field GUIDs
 	vars.CURRENT_ENTHUSIASM_GUID = "692C7C4D-3C6B-4729-86E4-426A101E1479".toLowerCase();
@@ -23,10 +18,10 @@
 	// skeleton console creation handler - even with it being empty like it is below
 	// the existence of the function will tell Relativity Forms to create the console
 	// in View mode.
-	// eventHandlers[eventNames.CREATE_CONSOLE] = function () {
-	// 	// not doing much
-	// 	return;
-	// };
+	eventHandlers[eventNames.CREATE_CONSOLE] = function () {
+		// not doing much
+		return;
+	};
 
 	return eventHandlers;
 }(eventNames, convenienceApi, privilegedEnvelope));
