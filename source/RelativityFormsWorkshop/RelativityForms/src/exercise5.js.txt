@@ -5,14 +5,11 @@
 	var MAXIMUM_ENTHUSIASM_GUID = "5426056E-C815-430C-93FB-57C979A88715".toLowerCase();
 	var CONTAIN_ENTHUSIASM_GUID = "0EE79570-5540-49F9-8DED-BDE5840AF433".toLowerCase();
 	
-	// DETAILED STEPS: ADDING MARKUP TO A CONSOLE (step 1 - 3 DAL addition)
-	// data access layer
 	var dal = {
-		// Kepler Service
 		reportEnthusiasmAsyncUrl: "KeplerLab.Services.Interfaces.IEnthusiasticPersonModule/PeopleAnalyzer/ReportEnthusiasmAsync",
 		reportEnthusiasmAsync: function reportEnthusiasmAsync(artifactId) {
-			// DETAILED STEPS: INVOKING THE KEPLER SERVICE VIA RELATIVITYHTTPCLIENT.KEPLERPOST
 			var field = convenienceApi.fieldHelper;
+			var name;
 
 			convenienceApi.promiseFactory.all([
 				field.getValue("Name"),
@@ -31,14 +28,34 @@
 						maximumEnthusiasm: values[3]
 					}
 				};
+				name = values[0];
 				return xhr.keplerPost(url, payload);
 			}).then(function reportSummary(response) {
-				alert(response.summary);
+				// EXERCISE 5
+				// make use of the modals variable to display this summary
+				return modals.notice(
+					[name,"'s results"].join(""),
+					response.summary
+				);
 			}).catch(function reportApiIssue(err) {
 				alert(err);
 			});
 		}
 	};
+
+	// EXERCISE 5
+	// modals and messaging
+	var modals = {
+		notice: function(title, text) {
+			// use the convenienceApi.modalService for fun
+			return convenienceApi.modalService.confirm({
+				title: title,
+				message: text,
+				acceptText: "All right",
+				cancelText: "All right already!"
+			});
+		}
+	}
 
 	function updateMaximumEnthusiasmVisibility(showValue) {
 		var field = convenienceApi.fieldHelper;
@@ -53,9 +70,6 @@
 		});
 	}
 
-	// DETAILED STEPS: ADDING MARKUP TO A CONSOLE
-	// No longer just a skeleton, now we're adding 3 elements to it, and using a 
-	// click handler to invoke another function
 	eventHandlers[eventNames.CREATE_CONSOLE] = function () {
 		var consl = convenienceApi.console;
 		var gen = consl.generate;	
@@ -71,7 +85,7 @@
 		});
 	};
 
-	eventHandlers[eventNames.HYDRATE_LAYOUT_COMPLETE] = function () {
+	eventHandlers[eventNames.HYDRATE_LAYOUT_COMPLETE] = function () { 		   		   	 	
 		updateMaximumEnthusiasmVisibility();
 	};
 
@@ -80,9 +94,7 @@
 		if (event.type === "change") {
 			switch (event.payload && event.payload.fieldId) {
 				case containEnthusiasmId: {
-					if (event.payload.htmlEvent.type === "change" ) {
-						updateMaximumEnthusiasmVisibility(modelData[containEnthusiasmId]);
-					}
+					updateMaximumEnthusiasmVisibility(modelData[containEnthusiasmId]);
 				} break;
 				default: break;
 			}

@@ -1,0 +1,2 @@
+For this exercise, the Relativity Application should already be installed for you on your instance.
+You're examining the Person Object Type's behavior in Classic, creating a few Person instances, and then enabling Relativity Forms for the Person Object Type to see the effect.
